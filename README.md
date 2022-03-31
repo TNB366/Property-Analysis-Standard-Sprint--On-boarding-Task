@@ -26,22 +26,17 @@ Task 1.b Display the current home value for each property in question a)
 Task 1.c For each property in question a), return the following:  
 i) Using rental payment amount, rental payment frequency, tenant start date and tenant end date to write a query that returns the sum of all payments from start date to end date.
 
-    SELECT p.[Name] AS PropertyName,  
-           p.Id AS PropertyID,  
-           CASE WHEN trt.[Name] ='Weekly' THEN (DATEDIFF(wk,tp.StartDate, tp.EndDate)*prp.Amount） 
-           WHEN trt.[Name] ='Fortnightly' THEN ((DATEDIFF(wk,tp.StartDate, tp.EndDate)/2)*prp.Amount)  
-           ELSE (DATEDIFF(m,tp.StartDate, tp.EndDate)*prp.Amount)  
-           END AS SumOfPayments,  
-           trt.[Name] AS RentalPaymentFrequency,   
-           prp.Amount AS RentalPaymentAmount,  
-           tp.StartDate AS TenantStartDate,  
-           tp.EndDate AS TenantEndDate 
-    FROM Property AS p  
-    INNER JOIN OwnerProperty AS op ON p.Id=op.PropertyId  
-    INNER JOIN PropertyRentalPayment AS prp ON p.Id=prp.PropertyId  
-    INNER JOIN TargetRentType AS trt ON prp.FrequencyType=trt.Id  
-    INNER JOIN TenantProperty AS tp ON p.Id=tp.PropertyId  
-    WHERE op.OwnerId=1426;  
+    SELECT p.id, p.Name, tp.PaymentAmount, tp.StartDate, tp.EndDate, tp.PaymentFrequencyId, trt.Name, 
+    CASE WHEN trt.Name = 'Weekly' THEN tp.PaymentAmount*52
+         WHEN trt.Name = 'Fortnightly' THEN tp.PaymentAmount*26
+         WHEN trt.Name = 'Monthly' THEN tp.PaymentAmount*12
+    END/52 * DATEDIFF(Week,tp.StartDate,tp.EndDate) as TotalPayment
+    FROM [dbo].[Property] p 
+    Inner join [dbo].[OwnerProperty] op on p.id = op.PropertyId
+    Inner join [dbo].[TenantProperty] tp on p.id = tp.PropertyId
+    Inner join [dbo].[TenantPaymentFrequencies] tpf on tpf.Id = tp.PaymentFrequencyId
+    Inner join [dbo].[TargetRentType] trt on trt.Id = tp.PaymentFrequencyId
+    WHERE op.OwnerId = 1426
 ![image]
 
 --
