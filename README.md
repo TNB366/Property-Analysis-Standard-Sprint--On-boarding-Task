@@ -146,6 +146,6 @@ Task 1.e.	Display all property names, current tenants first and last names and r
     LEFT JOIN PropertyExpense AS e ON p.Id=e.PropertyId  
     WHERE p.[Name]=@Property  
     
-![image]
+https://github.com/TNB366/Property-Analysis-Standard-Sprint--On-boarding-Task/blob/a13336f59078bcede780c255ba65dbcdb4a906d3/8.png
 
-![image]
+https://github.com/TNB366/Property-Analysis-Standard-Sprint--On-boarding-Task/blob/a13336f59078bcede780c255ba65dbcdb4a906d3/9.png
