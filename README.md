@@ -7,7 +7,7 @@ Task 1.a Display a list of all property names and their property id’s for Owne
     FROM OwnerProperty AS op  
     INNER JOIN Property AS p ON op.PropertyId=p.Id  
     WHERE op.OwnerId=1426;  
-![image]
+![1](https://user-images.githubusercontent.com/82072152/160957177-a80885bb-a4d8-49a5-9ac5-810122a0dd52.png)
 
 --
 Task 1.b Display the current home value for each property in question a)
@@ -20,7 +20,7 @@ Task 1.b Display the current home value for each property in question a)
     INNER JOIN PropertyHomeValue AS phv	ON p.Id=phv.PropertyId  
     WHERE op.OwnerId=1426 AND phv.IsActive=1  
     ORDER BY p.[Name];  
- ![image]
+![2](https://user-images.githubusercontent.com/82072152/160957179-0c0d14e5-a72a-495d-9785-f04caf05bb61.png)
  
  --
 Task 1.c For each property in question a), return the following:  
@@ -37,7 +37,7 @@ i) Using rental payment amount, rental payment frequency, tenant start date and 
     Inner join [dbo].[TenantPaymentFrequencies] tpf on tpf.Id = tp.PaymentFrequencyId
     Inner join [dbo].[TargetRentType] trt on trt.Id = tp.PaymentFrequencyId
     WHERE op.OwnerId = 1426
-![image]
+![3](https://user-images.githubusercontent.com/82072152/160957182-ef447f14-881e-4dcd-8add-c2d91c33c060.png)
 
 --
 Task 1.c For each property in question a), return the following:  
@@ -69,7 +69,7 @@ ii) Display the yield.
     LEFT JOIN PropertyExpense AS pe ON p.Id=pe.PropertyId  
     WHERE op.OwnerId=1426 AND phv.IsActive=1  
     GROUP BY p.[Name],p.Id,phv.[Value],trt.[Name],prp.Amount,tp.StartDate,tp.EndDate;  
-![image]
+![4](https://user-images.githubusercontent.com/82072152/160957186-19e8db40-c0f3-422c-a8af-14d63e809393.png)
 
 --
 Task 1.d.	Display all the jobs available in the marketplace (jobs that owners have advertised for service suppliers).
@@ -82,7 +82,7 @@ Task 1.d.	Display all the jobs available in the marketplace (jobs that owners ha
     FROM Job AS j  
     INNER JOIN JobMedia AS jm ON j.Id=jm.JobId  
     WHERE jm.IsActive=1  
-![image]
+![5](https://user-images.githubusercontent.com/82072152/160957188-760d1e17-d864-449e-8237-723e5c3f3f1d.png)
 
 --
 Task 1.e.	Display all property names, current tenants first and last names and rental payments per week/ fortnight/month for the properties in question a).
@@ -100,10 +100,10 @@ Task 1.e.	Display all property names, current tenants first and last names and r
     INNER JOIN PropertyRentalPayment AS prp ON p.Id=prp.PropertyId  
     INNER JOIN TargetRentType AS trt ON prp.FrequencyType=trt.Id  
     WHERE op.OwnerId=1426;  
-![image]
+![6](https://user-images.githubusercontent.com/82072152/160957189-a457582d-e24c-412c-911e-6c228157eeae.png)
 
 --Task 2 Use Report Builder or Visual Studio (SSRS) to develop the following report:
-![image]
+![7](https://user-images.githubusercontent.com/82072152/160957191-3b0cf858-e41e-4d78-bccb-3fdc08c7ece9.png)
 
  Solution, Data Set Query: 
  
