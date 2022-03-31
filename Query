@@ -1,2 +1,0 @@
-SELECT p.id, p.Name from [dbo].[Property] p, [dbo].[OwnerProperty] op
-WHERE p.Id = op.PropertyId and op.OwnerId = 1426    
